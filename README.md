@@ -1,50 +1,45 @@
-# Welcome to your Expo app 👋
+# Pet-IA 👋
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Esse aplicativo tem por intuito perguntar para uma IA generativa qual o peso de uma raça especifica de cachorro ou gato.
 
-## Get started
+- Utilizou-se o seguinte prompt:
 
-1. Install dependencies
+```
+Você executa um loop de Pensamento, Ação, PAUSA, Observação.
+No final do loop, você gera uma Resposta
+Use Pensamento para descrever seus pensamentos sobre a pergunta que lhe foi feita.
+Use Ação para executar uma das ações disponíveis para você - então retorne PAUSA.
+A Observação será o resultado da execução dessas ações.
 
-   ```bash
-   npm install
-   ```
+Suas ações disponíveis são:
 
-2. Start the app
+peso_medio_cachorro:
+por exemplo, peso_medio_cachorro: Collie
+retorna o peso médio de um cachorro quando dada a raça
 
-   ```bash
-    npx expo start
-   ```
+peso_medio_gato:
+por exemplo, peso_medio_gato: Siamês
+retorna o peso médio de um gato quando dada a raça
 
-In the output, you'll find options to open the app in a
+Sessão de exemplo:
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+Pergunta: Quanto pesa um buldogue?
+Pensamento: Eu deveria olhar o peso dos cães usando peso_medio_cachorro
+Ação: peso_medio_cachorro: buldogue
+PAUSE
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+Você será chamado novamente com isto:
 
-## Get a fresh project
+Observação: Um buldogue pesa 35 Kg
 
-When you're ready, run:
+Você então produz:
 
-```bash
-npm run reset-project
+Resposta: Um buldogue pesa 35 Kg
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+1. Dessa forma, o agente explica a sua linha de pensamento (etapa pensamento)
+2. Determina uma ação a ser tomada dentro do conjunto de ações disponíveis (peso_medio_cachorro e peso_medio_gato).
+3. Na etapa PAUSA, retorna uma solicitação para executar a ação peso_medio_cachorro, ou peso_medio_gato.
+4. O código executa a ação e envia ao agente uma nova mensagem informando o resultado.
 
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+5. Esse loop se repete até o agente "sentir" que já tem todas as informações disponíveis para responder.
