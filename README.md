@@ -40,6 +40,6 @@ Resposta: Um buldogue pesa 35 Kg
 1. Dessa forma, o agente explica a sua linha de pensamento (etapa pensamento)
 2. Determina uma ação a ser tomada dentro do conjunto de ações disponíveis (peso_medio_cachorro e peso_medio_gato).
 3. Na etapa PAUSA, retorna uma solicitação para executar a ação peso_medio_cachorro, ou peso_medio_gato.
-4. O código executa a ação e envia ao agente uma nova mensagem informando o resultado.
+4. O código executa a ação e envia ao agente uma nova mensagem informando o resultado (etapa Observação).
 
 5. Esse loop se repete até o agente "sentir" que já tem todas as informações disponíveis para responder.
